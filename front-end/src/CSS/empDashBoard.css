@@ -1,0 +1,37 @@
+.emp-dashboard {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+  .sidebar button:hover {
+    background-color: #616060;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  /* Add additional styles for profile picture, user name, etc. */
+  

@@ -1,0 +1,99 @@
+.book-venue {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .book-venue h2 {
+    text-align: center;
+  }
+  
+  .venue-list, .selected-venue, .sport-list, .selected-sport, .equipment-list {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+  }
+  
+  .venue-list ul, .sport-list ul, .equipment-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .venue-list li, .sport-list li, .equipment-list li {
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  .venue-list li:hover, .sport-list li:hover, .equipment-list li:hover {
+    color: #007bff;
+  }
+  
+  .selected-venue h3, .selected-sport h4, .equipment-list h5 {
+    margin-bottom: 10px;
+  }
+  
+  .select-dropdown {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .cart {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .cart h3 {
+    margin-bottom: 10px;
+  }
+  
+  .cart ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .cart li {
+    margin-bottom: 10px;
+  }
+  
+  .cart p {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .cart button {
+    background-color: #dc3545;
+  }
+  
+  .cart button:hover {
+    background-color: #bd2130;
+    color: #fff;
+  }
+  
