@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import VenueManagement from './VenueManagement';
 import EquipmentManagement from './EquipmentManagement';
-import BookingRequests from './BookingRequests';
+
 import '../../CSS/HrDashbord.css';
 import { useNavigate } from 'react-router-dom'; // Import useHistory for programmatic navigation
+import HRBookingRequests from './BookingRequests';
 
 const HrDashboard = () => {
   const [selectedTab, setSelectedTab] = useState('venues');
@@ -17,9 +18,8 @@ const HrDashboard = () => {
       fetch(`http://localhost:3001/api/v1/getUserDetails/${storedUsername}`)
         .then(response => response.json())
         .then(data => {
-          console.log('User data:', data.data.user.name);
-          console.log('name:',storedUsername)
-          setUserName(storedUsername);
+        
+          setUserName(data.data.user.name);
 
         })
         .catch(error => console.error('Error fetching user name:', error));
@@ -38,7 +38,7 @@ const HrDashboard = () => {
       case 'equipment':
         return <EquipmentManagement />;
       case 'bookingRequests':
-        return <BookingRequests />;
+        return <HRBookingRequests />;
       default:
         return null;
     }
@@ -49,10 +49,12 @@ const HrDashboard = () => {
       <div className="sidebar">
         <div className="user-info">
           <div className="profile-picture">
-            <img src="profile.jpg" alt="Profile" />
+            <img src="https://static.vecteezy.com/system/resources/previews/004/899/680/non_2x/beautiful-blonde-woman-with-makeup-avatar-for-a-beauty-salon-illustration-in-the-cartoon-style-vector.jpg" alt="Profile" />
           </div>
+          <br/>
           <div className="user-name">
-            Player Name - <h3>{userName}</h3>
+          Player Name -
+             <h3><span >{userName}</span></h3>
           </div>
         </div>
         <button onClick={() => setSelectedTab('venues')}>Add Venues</button>

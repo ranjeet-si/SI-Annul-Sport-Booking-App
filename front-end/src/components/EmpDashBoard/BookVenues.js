@@ -45,7 +45,7 @@ const BookVenue = () => {
         throw new Error("Invalid sport or sport id");
       }
   
-      const response = await fetch(`http://localhost:3001/api/equipment/${sport.sportid}`);
+      const response = await fetch(`http://localhost:3001/api/equipment/1`);
       const data = await response.json();
   
       if (data.data && Array.isArray(data.data.equipment)) {
@@ -159,7 +159,7 @@ const BookVenue = () => {
                 </select>
               </div>
 
-              <button onClick={addToCart}>Add to Cart</button>
+              <button onClick={addToCart}>Book Sport</button>
             </div>
           )}
         </div>

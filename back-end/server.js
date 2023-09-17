@@ -59,10 +59,15 @@ app.post("/api/v1/Employeelogin", async (req, res) => {
       });
     }
 
+    const userId = user.rows[0].user_id; // Extract the userId from the user data
+
     res.status(200).json({
       status: "success",
       data: {
-        user: user.rows[0],
+        user: {
+          userId, // Include the userId in the response
+          ...user.rows[0], // Include other user information if needed
+        },
       },
     });
   } catch (err) {
@@ -73,6 +78,7 @@ app.post("/api/v1/Employeelogin", async (req, res) => {
     });
   }
 });
+
 
 app.get("/api/v1/getUserDetails/:username", async (req, res) => {
   const username = req.params.username;
@@ -404,13 +410,13 @@ app.listen(port, ()=>{
 
 
 app.post("/api/v1/addBooking", async (req, res) => {
-  const { userId, venueId, equipmentId, startTime } = req.body;
+  const { userId, venueId, equipmentId, startTime,endTime } = req.body;
 
   try {
     // Assuming you have a database table named "Bookings" with appropriate columns
     const results = await db.query(
-      "INSERT INTO bookings (userid, venueid, equipmentid, starttime) VALUES ($1, $2, $3, $4) RETURNING *",
-      [userId, venueId, equipmentId, startTime]
+      "INSERT INTO bookings (userid, venueid, equipmentid, starttime, endtime) VALUES ($1, $2, $3, $4,$5) RETURNING *",
+      [userId, venueId, equipmentId, startTime,endTime]
     );
 
     res.status(201).json({
@@ -457,3 +463,82 @@ app.post('/api/v1/addVenueAndSports', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+// for booking request
+
+app.get("/api/v1/getBookings", async (req, res) => {
+  try {
+    const bookingData = await db.query(`
+      SELECT * FROM bookings;
+    `);
+
+    res.json({
+      status: 'success',
+      data: {
+        bookings: bookingData.rows,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching booking data:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
+});
+
+app.put("/api/v1/updateBookingStatus/:bookingId", async (req, res) => {
+  const { bookingId } = req.params;
+  const { status } = req.body;
+
+  try {
+    // Validate the status value (optional)
+    if (status !== 'approved' && status !== 'rejected') {
+      throw new Error('Invalid status value');
+    }
+
+    const updateQuery = `
+      UPDATE bookings 
+      SET status = $1
+      WHERE bookingid = $2
+    `;
+
+    await db.query(updateQuery, [status, bookingId]);
+
+    res.json({
+      status: 'success',
+      message: `Booking status updated to ${status}`,
+    });
+  } catch (error) {
+    console.error('Error updating booking status:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
+});
+
+ 
+
+//----------------------------------------
+
+
+app.get("/api/v1/getBookings/:userId", async (req, res) => {
+  const { userId } = req.params;
+console.log(userId)
+  try {
+    const bookingsData = await db.query(`
+      SELECT b.bookingid, v.venuename, s.sportname, b.starttime, b.endtime, b.status
+      FROM bookings b
+      JOIN venues v ON b.venueid = v.venueid
+      JOIN sports s ON b.sportid = s.sportid
+      WHERE b.user_id = $1;
+    `, [1]);
+
+    res.json({
+      status: 'success',
+      data: {
+        bookings: bookingsData.rows,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching bookings for user:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
+});
+
+

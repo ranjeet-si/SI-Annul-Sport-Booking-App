@@ -16,6 +16,7 @@ const EquipmentManagement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    alert('Equipment created successfully!');
 
     try {
       const response = await fetch('http://localhost:3001/api/v1/addEquipment', {
