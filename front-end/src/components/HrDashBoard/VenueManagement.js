@@ -6,12 +6,11 @@ const VenueManagement = () => {
   
   const [venueName, setVenueName] = useState('');
   const [sports, setSports] = useState([{ sportName: '', startTime: '', endTime: '' }]);
-  const storedUsername = localStorage.getItem('username');
+
   const handleAddSport = () => {
     setSports([...sports, { sportName: '', startTime: '', endTime: '' }]);
   };
 
-  const userName= storedUsername;
   const handleDeleteSport = (index) => {
     const updatedSports = [...sports];
     updatedSports.splice(index, 1);
@@ -57,7 +56,7 @@ const VenueManagement = () => {
   return (
     <>
     <div className='username'>
-     <h1>Hii, <span>{userName}</span> Plz Add  Sport in Venue</h1>
+     <h1>Hii, <span>{username}</span> Plz Add  Sport in Venue</h1>
     </div>
     <div className="App">
       
@@ -69,7 +68,7 @@ const VenueManagement = () => {
             value={venueName}
             onChange={(e) => setVenueName(e.target.value)}
           />
-          <button className='add-sport' type="button" onClick={handleAddSport}>
+          <button type="button" onClick={handleAddSport}>
           Add Sport
         </button>
         </div>
@@ -121,7 +120,7 @@ const VenueManagement = () => {
             </button>
           </div>
         ))}
-        <button className='add-sport' type="submit">Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
     </>

@@ -3,22 +3,21 @@
   max-width: 800px; /* Adjust the maximum width as needed */
   margin: 0 auto;
   padding: 20px;
-  background-color: #b6b4b4;
+  background-color: #f9f9f9;
 }
 
 .container {
   display: flex;
-
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  
 }
 
 .venue-input {
   flex-grow: 1;
   margin-right: 10px;
   padding: 10px;
-  border: 1px solid #b8b8b8;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
@@ -35,19 +34,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  
 }
 
 .sport-entry {
   flex: 0 0 calc(33.33% - 20px); /* Adjust width as needed */
   border: 1px solid #ccc;
   padding: 10px;
-  background-color: #f8d5d5;
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
-  width: 90%;
-  
+  width: auto;
 }
 
 .sport-entry h3 {

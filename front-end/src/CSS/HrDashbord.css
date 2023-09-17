@@ -1,6 +1,5 @@
 .hr-dashboard {
   display: flex;
-  background-color:white;
 }
 
 .sidebar {
@@ -30,13 +29,12 @@
 }
 
 .sidebar button.active {
-  background-color: #00ff11;
+  background-color: #007bff;
 }
 
 .content {
   flex-grow: 1;
   padding: 20px;
-  background-color: #ccc;
 }
 
 /* Add specific styles for VenueManagement, EquipmentManagement, and BookingRequests components as needed */
@@ -59,10 +57,10 @@
   margin-right: 10px;
 }
 
-
-
-.username h3 span {
-  color: red;
+.user-name {
+  font-size: 18px;
   font-weight: bold;
+  color: #fff;
 }
+
 
